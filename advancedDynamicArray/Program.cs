@@ -25,32 +25,29 @@
 
             if (isNumber)
             {
-                userNumbersStorage.Add(userNumber);
-                Console.WriteLine("Число записано! Нажмите любую клавишу для продолжения...");
-                Console.ReadKey();
-                Console.Clear();
+                WriteNumber(userNumbersStorage, userNumber);
+            }
+            else if (userInput == commandSumOfNumber)
+            {
+                sumOfUserNumber = CalculateSumOfNumber(userNumbersStorage);
+            }
+            else if (userInput == exitCommand)
+            {
+                isExit = true;
             }
             else
             {
-                if (userInput == commandSumOfNumber)
-                {
-                    sumOfUserNumber = CalculateSumOfNumber(userNumbersStorage);
-                    Console.WriteLine($"Сумма всех чисел хранилища равна - {sumOfUserNumber}\n" +
-                        $"Нажмите любую кнопку для продолжения...");
-                    Console.ReadKey();
-                    Console.Clear();
-                }
-                else if (userInput == exitCommand)
-                {
-                    Console.WriteLine("Удачи!");
-                    isExit = true;
-                }
-                else
-                {
-                    Console.WriteLine("Данные не корректны!!!");
-                }
+                Console.WriteLine("Данные не корректны!!!");
             }
         }
+    }
+
+    static void WriteNumber(List<int> numbers, int number)
+    {
+        numbers.Add(number);
+        Console.WriteLine("Число записано! Нажмите любую клавишу для продолжения...");
+        Console.ReadKey();
+        Console.Clear();
     }
 
     static int CalculateSumOfNumber(List<int> numbers)
@@ -61,6 +58,10 @@
         {
             sumNumbers += numbers[i];
         }
+        Console.WriteLine($"Сумма всех чисел хранилища равна - {sumNumbers}\n" +
+                    $"Нажмите любую кнопку для продолжения...");
+        Console.ReadKey();
+        Console.Clear();
         return sumNumbers;
     }
 }
